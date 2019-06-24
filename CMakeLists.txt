@@ -22,4 +22,5 @@ find_library(RAYLIB_LIB raylib)
 link_libraries(raylib X11 dl pthread m)
 
 add_executable(HellHeim.exe
+	entt.hpp
         main.cpp)
