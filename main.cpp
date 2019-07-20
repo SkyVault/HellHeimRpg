@@ -203,18 +203,23 @@ int main() {
 	  program.set_uniform(model_loc, model_trans);
 
 	  program.set_uniform(diffuse_loc, glm::vec3(1, 1, 1));
-	  if (reg->has<Selectable>(ent)) {
-	    auto& selectable = reg->get<Selectable>(ent);
-	    if (selectable.selected) {
-	      program.set_uniform(diffuse_loc, glm::vec3(1, 0, 0));
-	    }
-	  }
 
 	  glBindVertexArray(mesh->vao);
 	  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->ibo);
+
+	  if (reg->has<Selectable>(ent)) {
+	    auto& select = reg->get<Selectable>(ent);
+	    if (select.selected) {
+	      auto v = (0.5 * cos(Game::it()->get_clock().timer * 10.0f)) + 1.0;
+	      program.set_uniform(diffuse_loc, glm::vec3(1, v, v));
+	    }
+	  }
+
 	  glDrawElements(GL_TRIANGLES, mesh->indices.size(), GL_UNSIGNED_INT, (void*)0);
+
 	  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	  glBindVertexArray(0);
+
 
 	  glBindTexture(GL_TEXTURE_2D, 0);
 	});
