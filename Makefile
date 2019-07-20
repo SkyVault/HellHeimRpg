@@ -123,6 +123,87 @@ HellHeim.exe/fast:
 	$(MAKE) -f CMakeFiles/HellHeim.exe.dir/build.make CMakeFiles/HellHeim.exe.dir/build
 .PHONY : HellHeim.exe/fast
 
+art.o: art.cpp.o
+
+.PHONY : art.o
+
+# target to build an object file
+art.cpp.o:
+	$(MAKE) -f CMakeFiles/HellHeim.exe.dir/build.make CMakeFiles/HellHeim.exe.dir/art.cpp.o
+.PHONY : art.cpp.o
+
+art.i: art.cpp.i
+
+.PHONY : art.i
+
+# target to preprocess a source file
+art.cpp.i:
+	$(MAKE) -f CMakeFiles/HellHeim.exe.dir/build.make CMakeFiles/HellHeim.exe.dir/art.cpp.i
+.PHONY : art.cpp.i
+
+art.s: art.cpp.s
+
+.PHONY : art.s
+
+# target to generate assembly for a file
+art.cpp.s:
+	$(MAKE) -f CMakeFiles/HellHeim.exe.dir/build.make CMakeFiles/HellHeim.exe.dir/art.cpp.s
+.PHONY : art.cpp.s
+
+game.o: game.cpp.o
+
+.PHONY : game.o
+
+# target to build an object file
+game.cpp.o:
+	$(MAKE) -f CMakeFiles/HellHeim.exe.dir/build.make CMakeFiles/HellHeim.exe.dir/game.cpp.o
+.PHONY : game.cpp.o
+
+game.i: game.cpp.i
+
+.PHONY : game.i
+
+# target to preprocess a source file
+game.cpp.i:
+	$(MAKE) -f CMakeFiles/HellHeim.exe.dir/build.make CMakeFiles/HellHeim.exe.dir/game.cpp.i
+.PHONY : game.cpp.i
+
+game.s: game.cpp.s
+
+.PHONY : game.s
+
+# target to generate assembly for a file
+game.cpp.s:
+	$(MAKE) -f CMakeFiles/HellHeim.exe.dir/build.make CMakeFiles/HellHeim.exe.dir/game.cpp.s
+.PHONY : game.cpp.s
+
+graphics.o: graphics.cpp.o
+
+.PHONY : graphics.o
+
+# target to build an object file
+graphics.cpp.o:
+	$(MAKE) -f CMakeFiles/HellHeim.exe.dir/build.make CMakeFiles/HellHeim.exe.dir/graphics.cpp.o
+.PHONY : graphics.cpp.o
+
+graphics.i: graphics.cpp.i
+
+.PHONY : graphics.i
+
+# target to preprocess a source file
+graphics.cpp.i:
+	$(MAKE) -f CMakeFiles/HellHeim.exe.dir/build.make CMakeFiles/HellHeim.exe.dir/graphics.cpp.i
+.PHONY : graphics.cpp.i
+
+graphics.s: graphics.cpp.s
+
+.PHONY : graphics.s
+
+# target to generate assembly for a file
+graphics.cpp.s:
+	$(MAKE) -f CMakeFiles/HellHeim.exe.dir/build.make CMakeFiles/HellHeim.exe.dir/graphics.cpp.s
+.PHONY : graphics.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -150,6 +231,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/HellHeim.exe.dir/build.make CMakeFiles/HellHeim.exe.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+picker.o: picker.cpp.o
+
+.PHONY : picker.o
+
+# target to build an object file
+picker.cpp.o:
+	$(MAKE) -f CMakeFiles/HellHeim.exe.dir/build.make CMakeFiles/HellHeim.exe.dir/picker.cpp.o
+.PHONY : picker.cpp.o
+
+picker.i: picker.cpp.i
+
+.PHONY : picker.i
+
+# target to preprocess a source file
+picker.cpp.i:
+	$(MAKE) -f CMakeFiles/HellHeim.exe.dir/build.make CMakeFiles/HellHeim.exe.dir/picker.cpp.i
+.PHONY : picker.cpp.i
+
+picker.s: picker.cpp.s
+
+.PHONY : picker.s
+
+# target to generate assembly for a file
+picker.cpp.s:
+	$(MAKE) -f CMakeFiles/HellHeim.exe.dir/build.make CMakeFiles/HellHeim.exe.dir/picker.cpp.s
+.PHONY : picker.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -159,9 +267,21 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... HellHeim.exe"
 	@echo "... edit_cache"
+	@echo "... art.o"
+	@echo "... art.i"
+	@echo "... art.s"
+	@echo "... game.o"
+	@echo "... game.i"
+	@echo "... game.s"
+	@echo "... graphics.o"
+	@echo "... graphics.i"
+	@echo "... graphics.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... picker.o"
+	@echo "... picker.i"
+	@echo "... picker.s"
 .PHONY : help
 
 
