@@ -14,7 +14,7 @@ uniform sampler2D sampler;
 
 void main() {
   // ambient
-  float ambient_strength = 0.5;
+  float ambient_strength = 0.7;
   vec3 ambient_m = ambient_strength * lightColor;
 
   // diffuse

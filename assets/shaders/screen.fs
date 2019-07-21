@@ -5,7 +5,7 @@ in vec2 Uvs;
 uniform sampler2D screentexture;
 
 uniform vec2 resolution = vec2(320, 180);
-uniform float amount = 256;
+uniform float amount = 320;
 
 void main() {
     float d = 1.0 / amount;

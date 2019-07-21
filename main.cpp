@@ -42,6 +42,7 @@ int main() {
 
   // Set up opengl
   glEnable(GL_TEXTURE_2D);
+  glEnable(GL_TEXTURE_CUBE_MAP);
   glEnable(GL_DEPTH_TEST);
   //glDepthFunc(GL_ALWAYS);
   glEnable(GL_CULL_FACE);
@@ -79,7 +80,7 @@ int main() {
 			    "./assets/shaders/screen.vs",
 			    "./assets/shaders/screen.fs");
 
-  const auto projection = glm::perspective((float)(M_PI)/3.0f, width/height, 0.01f, 400.0f);
+  const auto projection = glm::perspective((float)(M_PI)/3.0f, width/height, 0.01f, 2000.0f);
   const auto projection_loc = program.get_loc("projection");
   const auto view_loc = program.get_loc("view");
   const auto model_loc = program.get_loc("model");
@@ -125,44 +126,27 @@ int main() {
     material.texture = texture;
   }
 
-  {
-    Mesh* mesh {nullptr};
-    if (auto mesh_op = load_mesh_file("assets/meshes/house.obj")) {
-	mesh = *mesh_op;
-    } else {
-	std::cout << "Failed to load mesh" << std::endl;
-    }
-
-    auto* reg = Game::it()->get_registry();
-    auto e = reg->create();
-    reg->assign<Model>(e, mesh);
-    reg->assign<Transform>(e);
-    reg->assign<Selectable>(e);
-
-    auto& trans = reg->get<Transform>(e);
-    trans.position = glm::vec3(0, -1, -3);
-  }
-
-  {
-    Mesh* mesh {nullptr};
-    if (auto mesh_op = load_mesh_file("assets/meshes/house.obj")) {
-	mesh = *mesh_op;
-    } else {
-	std::cout << "Failed to load mesh" << std::endl;
-    }
-
-    auto* reg = Game::it()->get_registry();
-    auto e = reg->create();
-    reg->assign<Model>(e, mesh);
-    reg->assign<Transform>(e);
-    reg->assign<Selectable>(e);
-
-    auto& trans = reg->get<Transform>(e);
-    trans.position = glm::vec3(9, -1, 9);
-  }
-
   // Picker / Editor
   Picker picker(width, height);
+  const auto skybox = load_skybox({
+#if 1
+        "assets/textures/skybox/right.jpg",
+	"assets/textures/skybox/left.jpg",
+	"assets/textures/skybox/top.jpg",
+	"assets/textures/skybox/bottom.jpg",
+	"assets/textures/skybox/front.jpg",
+	"assets/textures/skybox/back.jpg"
+#else
+        "assets/textures/lolwut.png",
+	"assets/textures/lolwut.png",
+	"assets/textures/lolwut.png",
+	"assets/textures/lolwut.png",
+	"assets/textures/lolwut.png",
+	"assets/textures/lolwut.png"
+#endif
+    }).value_or(Skybox{});
+
+  Renderer renderer;
 
   Game::it()->pushLayer(new TestLayer());
 
@@ -182,6 +166,10 @@ int main() {
 
     glViewport(0, 0, width, height);
 
+    const auto new_view = glm::mat4(glm::mat3(camera->get_view_matrix()));
+    render_skybox(renderer, skybox, projection, new_view);
+
+#if 1
     glUseProgram(program.program_id);
 
     program.set_uniform(projection_loc, projection);
@@ -226,6 +214,8 @@ int main() {
     }
 
     glUseProgram(0);
+#endif
+
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
     handle_picking(

@@ -10,6 +10,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "game.hpp"
+#include "graphics.hpp"
 
 struct Mesh {
    std::vector<GLfloat> vertices, normals, uvs;
@@ -62,15 +63,27 @@ private:
    bool mouse_shown {false};
 };
 
+struct Skybox {
+   GLuint id;
+};
+
 glm::mat4 get_transform_matrix(const Transform& t);
 
 std::optional<Mesh*> load_mesh_file(const char* path);
 std::optional<Texture> load_texture(const char* path);
+std::optional<Skybox> load_skybox(const std::vector<std::string>& faces);
 
 Framebuffer make_framebuffer(const int width, const int height);
 
 struct Renderer {
+   Renderer();
 
+   GLuint cube_vao, cube_vbo;
+   GLuint plane_vao, plane_vbo;
+
+   ShaderProgram skybox_program;
 };
+
+void render_skybox(Renderer ren, Skybox skybox, glm::mat4 proj, glm::mat4 view);
 
 #endif//ART_H
